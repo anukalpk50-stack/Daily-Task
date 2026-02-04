@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+main {
+    height: 100%;
+    width: 100%;
+    background: #121212;
+    display: flex;
+    justify-content: center;
+}
+
+section {
+    height: 100%;
+    width: 380px;
+    background-color: black;
+    border-radius: 15px;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    scrollbar-width: none;
+}
+
+section::-webkit-scrollbar {
+    display: none;
+}
+
+.all-reels {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.reel {
+    gap: 3px;
+    min-height: 100%;
+    width: 100%;
+    position: relative;
+    background-color: lightseagreen;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+.reel video {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+
+}
+
+.reel .bottom {
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+}
+
+.reel .bottom .user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.reel .bottom .user img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+.reel .bottom .user h4 {
+    font-size: 15px;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.reel .bottom .user h3 {
+    font-size: 14px;
+    font-weight: 400;
+    width: 100%;
+    margin-top: 5px;
+    opacity: 0.9;
+    line-height: 1.4;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.reel .bottom .user button {
+    background-color: transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reel .bottom .user button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    padding: 10px;
+    width: auto;
+    position: absolute;
+    right: 10px;
+    bottom: 10%;
+    z-index: 20;
+}
+
+.right i {
+    font-size: 18px;
+    font-weight: 400;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.right i:hover {
+    transform: scale(1.2);
+    color: #ddd;
+}
+
+.right h6 {
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 5px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
