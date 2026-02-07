@@ -1,7 +1,7 @@
 const reels = [
     {
         username: "alex_adventures",
-        likeCount: "15.2k",
+        likeCount: 15200,
         caption: "Exploring the mountains 🏔️ #adventure",
         video: "/video/1.mp4",
         commentCount: "500",
@@ -13,7 +13,7 @@ const reels = [
     },
     {
         username: "foodie_jane",
-        likeCount: "8.9k",
+        likeCount: 8900,
         caption: "Delicious pasta for dinner 🍝 #foodie",
         video: "/video/2.mp4",
         commentCount: "200",
@@ -25,7 +25,7 @@ const reels = [
     },
     {
         username: "tech_insider",
-        likeCount: "22k",
+        likeCount: 22000,
         caption: "The future of AI is here 🤖 #tech",
         video: "/video/3.mp4",
         commentCount: "1.1k",
@@ -37,7 +37,7 @@ const reels = [
     },
     {
         username: "fitness_mike",
-        likeCount: "10.5k",
+        likeCount: 10500,
         caption: "Morning workout routine 💪 #fitness",
         video: "/video/4.mp4",
         commentCount: "300",
@@ -49,7 +49,7 @@ const reels = [
     },
     {
         username: "nature_lover",
-        likeCount: "30k",
+        likeCount: 30000,
         caption: "Peaceful forest walk 🌲 #nature",
         video: "/video/5.mp4",
         commentCount: "800",
@@ -61,7 +61,7 @@ const reels = [
     },
     {
         username: "urban_style",
-        likeCount: "18k",
+        likeCount: 18000,
         caption: "City lights at night 🌃 #urban",
         video: "/video/6.mp4",
         commentCount: "450",
@@ -73,7 +73,7 @@ const reels = [
     },
     {
         username: "pet_paradise",
-        likeCount: "40k",
+        likeCount: 40000,
         caption: "Cute kitten playing 🐱 #cats",
         video: "/video/7.mp4",
         commentCount: "2k",
@@ -85,7 +85,7 @@ const reels = [
     },
     {
         username: "music_vibes",
-        likeCount: "25k",
+        likeCount: 25000,
         caption: "Live concert energy 🎸 #music",
         video: "/video/8.mp4",
         commentCount: "900",
@@ -97,7 +97,7 @@ const reels = [
     },
     {
         username: "art_daily",
-        likeCount: "12k",
+        likeCount: 12000,
         caption: "Sketching in the park ✏️ #art",
         video: "/video/9.mp4",
         commentCount: "150",
@@ -109,7 +109,7 @@ const reels = [
     },
     {
         username: "coffee_addict",
-        likeCount: "9.5k",
+        likeCount: 9500,
         caption: "Morning brew ☕ #coffee",
         video: "/video/10.mp4",
         commentCount: "350",
@@ -120,23 +120,29 @@ const reels = [
         image: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=600&auto=format&fit=crop&q=60"
     }
 ];
+var allReels = document.querySelector('.all-reels');
+
+
+function addData(){
 var sum = '';
-reels.forEach(function (elem) {
+
+reels.forEach(function (elem,idx) {
     sum = sum + `<div class="reel">
-                  <video autoplay loop muted  src="${elem.video}"></video>
+                  <video autoplay loop ${elem.isMuted ? 'muted' : ''} src="${elem.video}"></video>
+                 
                     <div class="bottom">
                         <div class="user">
                             <img src="${elem.userProfile}" alt="">
 
                             <h4>${elem.username}</h4>
-                            <button>${elem.isFollowed ? 'Following' : 'Follow'}</button>
+                            <button id="${idx}" class="follow">${elem.isFollowed ? 'Following' : 'Follow'}</button>
                             <h3>${elem.caption}</h3>
                         </div>
                     </div>
 
                     <div class="right">
                         <div class="like">
-                            <h4 class="like-icon"><i class="${elem.isLiked ? 'ri-heart-3-fill' : 'ri-heart-3-line'}" style="color: ${elem.isLiked ? 'red' : ''}"></i></h4>
+                            <h4 class="like-icon"><i id="${idx}" class="love ${elem.isLiked ? 'ri-heart-3-fill' : 'ri-heart-3-line'}" style="color: ${elem.isLiked ? 'red' : ''}"></i></h4>
                             <h6>${elem.likeCount}</h6>
                         </div>
                         <div class="comment">
@@ -154,12 +160,39 @@ reels.forEach(function (elem) {
                 </div>`
 
 })
-var allReels = document.querySelector('.all-reels');
 allReels.innerHTML = sum;
+}
 
-// var arr = [10,30.34,56,67]
-// arr.forEach(function(elem,idx){
-//     console.log(elem);
-//     // console.log(idx);
+addData()
 
-// })
+allReels.addEventListener('click', function (dets) {
+    if (dets.target.classList.contains('love')) {
+        var index = dets.target.id;
+        if (reels[index].isLiked) {
+            reels[index].likeCount--;
+            reels[index].isLiked = false;
+            dets.target.classList.remove('ri-heart-3-fill');
+            dets.target.classList.add('ri-heart-3-line');
+            dets.target.style.color = '';
+        } else {
+            reels[index].likeCount++;
+            reels[index].isLiked = true;
+            dets.target.classList.remove('ri-heart-3-line');
+            dets.target.classList.add('ri-heart-3-fill');
+            dets.target.style.color = 'red';
+        }
+        dets.target.parentElement.nextElementSibling.innerText = reels[index].likeCount;
+    } else if (dets.target.classList.contains('follow')) {
+        var index = dets.target.id;
+        reels[index].isFollowed = !reels[index].isFollowed;
+        if (reels[index].isFollowed) {
+            dets.target.innerText = 'Following';
+            dets.target.style.backgroundColor = 'transparent';
+            dets.target.style.borderColor = 'transparent';
+        } else {
+            dets.target.innerText = 'Follow';
+            dets.target.style.backgroundColor = 'rgb(50,107,176)';
+            dets.target.style.borderColor = 'transparent';
+        }
+    }
+})

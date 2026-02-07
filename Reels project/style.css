@@ -44,7 +44,7 @@ section::-webkit-scrollbar {
 
 .reel {
     gap: 3px;
-    min-height: 100%;
+    height: 100%;
     width: 100%;
     position: relative;
     background-color: lightseagreen;
@@ -53,20 +53,40 @@ section::-webkit-scrollbar {
 }
 
 .reel video {
-    height: 100%;
+    height: 110%;
     width: 100%;
     object-fit: cover;
 
 }
 
 .reel .bottom {
-    padding: 20px;
+    /* padding: 20px;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     width: 100%;
     position: absolute;
     bottom: 0;
+    z-index: 10; */
+  
+    /* Ensure padding doesn't make the width wider than 100% */
+    box-sizing: border-box; 
+    
+    /* Standard padding */
+    padding: 20px;
+    
+    /* ADD THIS: Extra spacing for the bottom. 
+       Use 'env' to account for the "home bar" on iPhones/Androids. 
+       If on desktop, it falls back to 40px. */
+    padding-bottom: max(40px, calc(20px + env(safe-area-inset-bottom)));
+
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    
+    /* Uncomment this to ensure text stays above the video */
     z-index: 10;
 }
+
 
 .reel .bottom .user {
     display: flex;
@@ -106,7 +126,7 @@ section::-webkit-scrollbar {
     font-size: 14px;
     font-weight: 600;
     border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid transparent;
     color: white;
     backdrop-filter: blur(5px);
     cursor: pointer;
@@ -148,4 +168,47 @@ section::-webkit-scrollbar {
     font-weight: 500;
     margin-top: 5px;
     text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+/* .love{
+   color: red;
+} */
+.right > div h6 {
+pointer-events: none;
+}
+.rightv>div h6{
+    posinter-events: none;
+
+}
+@media (max-width: 480px) {
+    section {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .reel .bottom {
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+
+    .right {
+        right: 5px;
+        bottom: 15%;
+        gap: 15px;
+    }
+
+    .reel .bottom .user h4 {
+        font-size: 14px;
+    }
+
+    .reel .bottom .user h3 {
+        font-size: 13px;
+    }
+}
+
+@media (min-width: 1024px) {
+    section {
+        width: 400px;
+        height: 90vh;
+        margin-top: 5vh;
+        border-radius: 20px;
+    }
 }
