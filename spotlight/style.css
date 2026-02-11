@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body{
+    height: 100%;
+    width: 100%;
+    background-color: black;
+}
+body{
+    background-image: url(https://images.pexels.com/photos/158063/bellingrath-gardens-alabama-landscape-scenic-158063.jpeg);
+    background-size: cover;    
+
+}
+:root{
+--x: 400px;
+--y: 400px;  
+}
+.box{ 
+ height: 100%;
+ width: 100%;
+ background: radial-gradient(100px at var(--x) var(--y),rgba(255, 255, 255, 0),rgba(0, 0, 0, 0.895));
+}
