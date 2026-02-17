@@ -36,16 +36,27 @@ body{
     padding-inline: 10px;
     padding-bottom: 10px;
     color: whitesmoke;
-    box-shadow: 0 0 30px rgb(255, 0, 123);
+    box-shadow: 0 0 0px rgb(255, 0, 123);
     border-radius: 15px;
     border:5px solid rgba(255, 255, 255,0);
     background:
     linear-gradient( black) padding-box, 
-    conic-gradient(from var(--rotate) ,black,black, rgb(255, 0, 123),black)
-     border-box
-    ;
+    conic-gradient(from var(--rotate) ,black,black, rgb(255, 0, 123),black) border-box ;
     margin: 10px;
-    animation: borderAnimate 2s linear infinite;
+    animation: borderAnimate 2s;
+    animation-iteration-count: infinite;  
+    animation-timing-function: linear;
+    animation-play-state: paused;
+    border-width: 0px;
+    transition: all 0.5s ease-in;
+    color: white;
+}
+.card:hover{
+    animation-play-state:running;
+    border-width: 5px;
+    box-shadow: 0 0 50px rgb(255, 0, 123);
+    color: rgb(255,0,255);
+    text-shadow:0 0 10px rgb(125, 14, 204) ;
 }
 .card img{
     width: 100%;
