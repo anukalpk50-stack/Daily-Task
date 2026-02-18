@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,body{
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    gap: 15px;
+}
+.balls{
+    display: flex;
+    gap: 15px;
+    border: 2px white solid;
+}
+.ball{
+    border-radius: 50%;
+    background-color: white;
+    height: 50px;
+    width: 50px;
+   
+}
+.red{
+    background-color: red;
+
+}
+.green{
+    background-color: green;
+}
+.blue{
+    background-color: blue;
+}
+.balls:has(.blue){
+    background-color: rgba(226, 35, 67,0.7);
+}
